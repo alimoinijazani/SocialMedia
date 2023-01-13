@@ -19,5 +19,24 @@ authRouter.post('/register', async (req, res) => {
     console.log(err);
   }
 });
+//login
+authRouter.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(404).send('user not found');
+    }
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      res.status(400).send('wrong pass');
+    }
+    res.status(200).send('200');
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 export default authRouter;
