@@ -23,7 +23,7 @@ userRouter.put('/:id', async (req, res) => {
       res.status(500).send(err);
     }
   } else {
-    res.status(403).send();
+    res.status(403).send('you can update only your account');
   }
 });
 //delete user
@@ -86,7 +86,7 @@ userRouter.put('/:id/unfollow', async (req, res) => {
       res.status(500).send(err);
     }
   } else {
-    res.status(403).send('you cant follow yourself');
+    res.status(403).send('you cant unfollow yourself');
   }
 });
 export default userRouter;

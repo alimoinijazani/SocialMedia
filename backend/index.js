@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import userRouter from './routes/users.js';
 import authRouter from './routes/auth.js';
+import postRouter from './routes/posts.js';
 const app = express();
 dotenv.config();
 mongoose.set('strictQuery', false);
@@ -20,7 +21,7 @@ app.use(morgan('common'));
 
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
-
+app.use('/api/posts', postRouter);
 const Port = 8800 | process.env.PORT;
 app.listen(Port, () => {
   console.log(`port ${Port}`);
